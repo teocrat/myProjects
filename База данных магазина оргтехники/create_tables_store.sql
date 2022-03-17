@@ -84,20 +84,17 @@ create table orders
  );
 
 drop table if exists orders_products;
-
+ 
 create table orders_products
-   (id serial,
+   (
    orders_id bigint unsigned,
    products_id bigint unsigned,
-   primary key (id,orders_id),
+   primary key(orders_id, products_id),
    amount int unsigned,
    created_at datetime default now(),
    updated_at datetime default now() on update now(),
    
-   foreign key (orders_id) references orders(id)
-   on delete cascade
-   on update cascade,
-   
+      
    foreign key (products_id) references products(id)
    on delete cascade
    on update cascade 
